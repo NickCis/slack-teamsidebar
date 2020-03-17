@@ -18,14 +18,14 @@ So, as a first attemp was [changing Chrome user agent](https://developers.google
 
 ```
 Mozilla/5.0 (X11; Linux x86_64; Arch Linux unversioned; GNOME) AppleWebKit/537.36 (KHTML, like Gecko) Slack/4.3.2 Chrome/78.0.3904.130 Electron/7.1.9 Safari/537.36 Sonic Slack_SSB/4.3.2
-``
+```
 
 This made slack's loading placeholder to have the Team Sidebar, but, it removed it as soon as slack loaded. I'll have to do a deep debugging.
 
 _As a side note, this ended up being harder that I've thought, if I tried to add breakpoints on the formatted slack bundle, my browser hanged. It seems that
 my computer isn't fast enough to debug a 1.9mb bundle. Luckily, I ended up discovering a Chrome feature called [local overrides](https://developers.google.com/web/updates/2018/01/devtools#overrides).
 That feature in addition with the [Mod Header Plugin](https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj) to set the `Content Security Policy` header, allowed me to debug
-the web bundle.
+the web bundle._
 
 In order to understand how the bar was placed, I've searched all js files with the css class desktop used: `p-client--show-team-sidebar`.
 
@@ -106,14 +106,14 @@ As far as I've understand :
 So in order to show the Team sidebar, we can do one of these things:
 
 - we can add `multi_team=1` to the url
-- Edit the property `multiTeamOverride` with the value `true` to the `localConfig_v2` JSON stored in localstore
+- Add the property `multiTeamOverride` with the value `true` to the object (in localstorage) whose key is `localConfig_v2`.
 - Add the string `CrOS` to `navigator.userAgent`.
 
 This plugin does the last one:
 
 ```js
 Object.defineProperty(Navigator.prototype, 'userAgent', {
-  value: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 CrOS',
+  value: `${navigator.userAgent} CrOS`,
   configurable: false,
   enumerable: true,
   writable: false
