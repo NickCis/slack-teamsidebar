@@ -1,0 +1,16 @@
+{
+  "name": "slack-teamsidebar",
+  "version": "1.0.0",
+  "main": "manifest.json",
+  "repository": "https://github.com/nickcis/slack-teamsidebar",
+  "author": "Nicolas Cisco <ncis20@gmail.com>",
+  "scripts": {
+    "build": "node build.js",
+    "launch": "node launch.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "adm-zip": "^0.4.13",
+    "chrome-launch": "^1.1.4"
+  }
+}
