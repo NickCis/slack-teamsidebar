@@ -70,7 +70,7 @@ render() {
 }
 ```
 
-_Please have in mind that the code is has been formatted, but is taken from the ugliffyed bundle_.
+_Please have in mind that the code has been formatted, but is taken from the ugliffyed bundle_.
 
 And the `P.a` object was created by the following code:
 
@@ -91,7 +91,7 @@ function(e, t, a) {
 }
 ```
 
-As far as I've understand :
+As far as I've understood :
 - `Object(s.a)()`: always returned true
 - `t > 1`: Checks that you are in more than one workspace
 - `Object(r.v)()`: Checks that the user agent doesn't have the `Slack` string
